@@ -1,39 +1,28 @@
 package com.ncpbails.culturaldelights.block.custom;
 
 import com.mojang.serialization.MapCodec;
-import javax.annotation.Nullable;
 
-import com.mojang.serialization.MapCodec;
 import com.ncpbails.culturaldelights.block.ModBlocks;
 import com.ncpbails.culturaldelights.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.StateDefinition.Builder;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.block.state.properties.Property;
-import net.minecraft.world.level.material.Fluid;
-import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.neoforged.neoforge.common.CommonHooks;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
@@ -57,21 +46,19 @@ public class CornBlock extends BushBlock implements BonemealableBlock {
 
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         super.tick(state, level, pos, random);
-        if (level.isAreaLoaded(pos, 1)) {
+        if (level.hasChunksAt(pos.offset(-1, -1, -1), pos.offset(1, 1, 1))) {
             if (level.getRawBrightness(pos.above(), 0) >= 6) {
                 int age = this.getAge(state);
                 if (age <= this.getMaxAge()) {
                     float chance = 10.0F;
-                    if (CommonHooks.canCropGrow(level, pos, state, random.nextInt((int)(25.0F / chance) + 1) == 0)) {
+                    if (random.nextInt((int) (25.0F / chance) + 1) == 0) {
                         if (age == this.getMaxAge()) {
                             CornUpperBlock cornUpper = (CornUpperBlock) ModBlocks.CORN_UPPER.get();
                             if (cornUpper.defaultBlockState().canSurvive(level, pos.above()) && level.isEmptyBlock(pos.above())) {
                                 level.setBlockAndUpdate(pos.above(), cornUpper.defaultBlockState());
-                                CommonHooks.fireCropGrowPost(level, pos, state);
                             }
                         } else {
                             level.setBlock(pos, this.withAge(age + 1), 2);
-                            CommonHooks.fireCropGrowPost(level, pos, state);
                         }
                     }
                 }

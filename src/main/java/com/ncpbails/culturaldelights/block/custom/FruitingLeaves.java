@@ -26,7 +26,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
-import net.neoforged.neoforge.common.CommonHooks;
 
 public class FruitingLeaves extends LeavesBlock implements BonemealableBlock {
     public static final int MAX_AGE = 4;
@@ -35,10 +34,10 @@ public class FruitingLeaves extends LeavesBlock implements BonemealableBlock {
     public FruitingLeaves(Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any()
-                .setValue(AGE, Integer.valueOf(0))
-                .setValue(DISTANCE, Integer.valueOf(7))
-                .setValue(PERSISTENT, Boolean.valueOf(false))
-                .setValue(WATERLOGGED, Boolean.valueOf(false)));
+                .setValue(AGE, 0)
+                .setValue(DISTANCE, 7)
+                .setValue(PERSISTENT, Boolean.FALSE)
+                .setValue(WATERLOGGED, Boolean.FALSE));
 
     }
 
@@ -58,22 +57,21 @@ public class FruitingLeaves extends LeavesBlock implements BonemealableBlock {
         else {
             int age = state.getValue(AGE);
             if (age < MAX_AGE) {
-                BlockState blockstate = (BlockState)state.setValue(AGE, age + 1);
+                BlockState blockstate = state.setValue(AGE, age + 1);
                 world.setBlock(pos, blockstate, 2);
-                CommonHooks.fireCropGrowPost(world, pos, state);
                 world.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(blockstate));
             }
         }
     }
 
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
-        int i = (Integer)state.getValue(AGE);
+        int i = state.getValue(AGE);
         boolean flag = i == 3;
         return !flag && stack.is(Items.BONE_MEAL) ? ItemInteractionResult.SKIP_DEFAULT_BLOCK_INTERACTION : super.useItemOn(stack, state, level, pos, player, hand, hitResult);
     }
 
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
-        int i = (Integer)state.getValue(AGE);
+        int i = state.getValue(AGE);
         boolean flag = i == 3;
         if (i > 1) {
             int j = 1 + level.random.nextInt(2);

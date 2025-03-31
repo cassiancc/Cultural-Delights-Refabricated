@@ -2,174 +2,171 @@ package com.ncpbails.culturaldelights.item;
 
 import com.ncpbails.culturaldelights.CulturalDelights;
 import com.ncpbails.culturaldelights.block.ModBlocks;
+import com.ncpbails.culturaldelights.refabricated.RegUtils;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
-import net.neoforged.bus.api.IEventBus;
-import net.neoforged.neoforge.registries.DeferredItem;
-import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
 
 public class ModItems {
-    public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(CulturalDelights.MOD_ID);
 
     //Items                                                                  item id
 
-    public static final DeferredItem<Item> CUCUMBER_SEEDS = ITEMS.register("cucumber_seeds",
+    public static final Supplier<Item> CUCUMBER_SEEDS = RegUtils.regItem("cucumber_seeds",
             () -> new ItemNameBlockItem(ModBlocks.CUCUMBERS.get(),
                     new Item.Properties()));
 
-    public static final DeferredItem<Item> CORN_KERNELS = ITEMS.register("corn_kernels",
+    public static final Supplier<Item> CORN_KERNELS = RegUtils.regItem("corn_kernels",
             () -> new ItemNameBlockItem(ModBlocks.CORN.get(),
                     new Item.Properties()));
 
-    public static final DeferredItem<Item> EGGPLANT_SEEDS = ITEMS.register("eggplant_seeds",
+    public static final Supplier<Item> EGGPLANT_SEEDS = RegUtils.regItem("eggplant_seeds",
             () -> new ItemNameBlockItem(ModBlocks.EGGPLANTS.get(),
                     new Item.Properties()));
 
 
     //Ingredients
-    public static final DeferredItem<Item> AVOCADO = ITEMS.register("avocado",
+    public static final Supplier<Item> AVOCADO = RegUtils.regItem("avocado",
             () -> new Item(new Item.Properties().food(ModFoods.AVOCADO)));
 
-    public static final DeferredItem<Item> CUT_AVOCADO = ITEMS.register("cut_avocado",
+    public static final Supplier<Item> CUT_AVOCADO = RegUtils.regItem("cut_avocado",
             () -> new Item(new Item.Properties().food(ModFoods.CUT_AVOCADO)));
 
-    public static final DeferredItem<Item> CUCUMBER = ITEMS.register("cucumber",
+    public static final Supplier<Item> CUCUMBER = RegUtils.regItem("cucumber",
             () -> new Item(new Item.Properties().food(ModFoods.CUCUMBER)));
 
-    public static final DeferredItem<Item> PICKLE = ITEMS.register("pickle",
+    public static final Supplier<Item> PICKLE = RegUtils.regItem("pickle",
             () -> new Item(new Item.Properties().food(ModFoods.PICKLE)));
 
-    public static final DeferredItem<Item> CUT_CUCUMBER = ITEMS.register("cut_cucumber",
+    public static final Supplier<Item> CUT_CUCUMBER = RegUtils.regItem("cut_cucumber",
             () -> new Item(new Item.Properties().food(ModFoods.CUT_CUCUMBER)));
 
-    public static final DeferredItem<Item> CUT_PICKLE = ITEMS.register("cut_pickle",
+    public static final Supplier<Item> CUT_PICKLE = RegUtils.regItem("cut_pickle",
             () -> new Item(new Item.Properties().food(ModFoods.CUT_PICKLE)));
 
-    public static final DeferredItem<Item> EGGPLANT = ITEMS.register("eggplant",
+    public static final Supplier<Item> EGGPLANT = RegUtils.regItem("eggplant",
             () -> new Item(new Item.Properties().food(ModFoods.EGGPLANT)));
 
-    public static final DeferredItem<Item> CUT_EGGPLANT = ITEMS.register("cut_eggplant",
+    public static final Supplier<Item> CUT_EGGPLANT = RegUtils.regItem("cut_eggplant",
             () -> new Item(new Item.Properties().food(ModFoods.CUT_EGGPLANT)));
 
-    public static final DeferredItem<Item> SMOKED_EGGPLANT = ITEMS.register("smoked_eggplant",
+    public static final Supplier<Item> SMOKED_EGGPLANT = RegUtils.regItem("smoked_eggplant",
             () -> new Item(new Item.Properties().food(ModFoods.SMOKED_EGGPLANT)));
 
-    public static final DeferredItem<Item> SMOKED_TOMATO = ITEMS.register("smoked_tomato",
+    public static final Supplier<Item> SMOKED_TOMATO = RegUtils.regItem("smoked_tomato",
             () -> new Item(new Item.Properties().food(ModFoods.SMOKED_TOMATO)));
 
-    public static final DeferredItem<Item> SMOKED_CUT_EGGPLANT = ITEMS.register("smoked_cut_eggplant",
+    public static final Supplier<Item> SMOKED_CUT_EGGPLANT = RegUtils.regItem("smoked_cut_eggplant",
             () -> new Item(new Item.Properties().food(ModFoods.SMOKED_CUT_EGGPLANT)));
 
-    public static final DeferredItem<Item> SMOKED_WHITE_EGGPLANT = ITEMS.register("smoked_white_eggplant",
+    public static final Supplier<Item> SMOKED_WHITE_EGGPLANT = RegUtils.regItem("smoked_white_eggplant",
             () -> new Item(new Item.Properties().food(ModFoods.SMOKED_WHITE_EGGPLANT)));
-    public static final DeferredItem<Item> WHITE_EGGPLANT = ITEMS.register("white_eggplant",
+    public static final Supplier<Item> WHITE_EGGPLANT = RegUtils.regItem("white_eggplant",
             () -> new Item(new Item.Properties().food(ModFoods.WHITE_EGGPLANT)));
-    public static final DeferredItem<Item> CORN_COB = ITEMS.register("corn_cob",
+    public static final Supplier<Item> CORN_COB = RegUtils.regItem("corn_cob",
             () -> new Item(new Item.Properties().food(ModFoods.CORN_COB)));
-    //public static final DeferredItem<Item> GINGER = ITEMS.register("ginger",
+    //public static final Supplier<Item> GINGER = RegUtils.regItem("ginger",
     //        () -> new Item(new Item.Properties().food(ModFoods.GINGER)));
 
-    public static final DeferredItem<Item> SQUID = ITEMS.register("squid",
+    public static final Supplier<Item> SQUID = RegUtils.regItem("squid",
             () -> new Item(new Item.Properties().food(ModFoods.SQUID)));
 
-    public static final DeferredItem<Item> COOKED_SQUID = ITEMS.register("cooked_squid",
+    public static final Supplier<Item> COOKED_SQUID = RegUtils.regItem("cooked_squid",
             () -> new Item(new Item.Properties().food(ModFoods.COOKED_SQUID)));
 
-    public static final DeferredItem<Item> GLOW_SQUID = ITEMS.register("glow_squid",
+    public static final Supplier<Item> GLOW_SQUID = RegUtils.regItem("glow_squid",
             () -> new Item(new Item.Properties().food(ModFoods.GLOW_SQUID)));
 
-    public static final DeferredItem<Item> RAW_CALAMARI = ITEMS.register("raw_calamari",
+    public static final Supplier<Item> RAW_CALAMARI = RegUtils.regItem("raw_calamari",
             () -> new Item(new Item.Properties().food(ModFoods.RAW_CALAMARI)));
 
-    public static final DeferredItem<Item> COOKED_CALAMARI = ITEMS.register("cooked_calamari",
+    public static final Supplier<Item> COOKED_CALAMARI = RegUtils.regItem("cooked_calamari",
             () -> new Item(new Item.Properties().food(ModFoods.COOKED_CALAMARI)));
 
 
     //Meals
-    public static final DeferredItem<Item> POPCORN = ITEMS.register("popcorn",
+    public static final Supplier<Item> POPCORN = RegUtils.regItem("popcorn",
             () -> new Item(new Item.Properties().food(ModFoods.POPCORN)));
 
-    public static final DeferredItem<Item> CORN_DOUGH = ITEMS.register("corn_dough",
+    public static final Supplier<Item> CORN_DOUGH = RegUtils.regItem("corn_dough",
             () -> new Item(new Item.Properties().food(ModFoods.CORN_DOUGH)));
 
-    public static final DeferredItem<Item> TORTILLA = ITEMS.register("tortilla",
+    public static final Supplier<Item> TORTILLA = RegUtils.regItem("tortilla",
             () -> new Item(new Item.Properties().food(ModFoods.TORTILLA)));
 
-    public static final DeferredItem<Item> TORTILLA_CHIPS = ITEMS.register("tortilla_chips",
+    public static final Supplier<Item> TORTILLA_CHIPS = RegUtils.regItem("tortilla_chips",
             () -> new Item(new Item.Properties().food(ModFoods.TORTILLA_CHIPS)));
 
-    public static final DeferredItem<Item> ELOTE = ITEMS.register("elote",
+    public static final Supplier<Item> ELOTE = RegUtils.regItem("elote",
             () -> new Item(new Item.Properties().food(ModFoods.ELOTE)));
 
-    public static final DeferredItem<Item> EMPANADA = ITEMS.register("empanada",
+    public static final Supplier<Item> EMPANADA = RegUtils.regItem("empanada",
             () -> new Item(new Item.Properties().food(ModFoods.EMPANADA)));
 
-    public static final DeferredItem<Item> HEARTY_SALAD = ITEMS.register("hearty_salad",
+    public static final Supplier<Item> HEARTY_SALAD = RegUtils.regItem("hearty_salad",
             () -> new Item(new Item.Properties().stacksTo(16).food(ModFoods.HEARTY_SALAD)));
 
-    public static final DeferredItem<Item> BEEF_BURRITO = ITEMS.register("beef_burrito",
+    public static final Supplier<Item> BEEF_BURRITO = RegUtils.regItem("beef_burrito",
             () -> new Item(new Item.Properties().food(ModFoods.BEEF_BURRITO)));
 
-    public static final DeferredItem<Item> MUTTON_SANDWICH = ITEMS.register("mutton_sandwich",
+    public static final Supplier<Item> MUTTON_SANDWICH = RegUtils.regItem("mutton_sandwich",
             () -> new Item(new Item.Properties().food(ModFoods.MUTTON_SANDWICH)));
 
-    public static final DeferredItem<Item> FRIED_EGGPLANT_PASTA = ITEMS.register("fried_eggplant_pasta",
+    public static final Supplier<Item> FRIED_EGGPLANT_PASTA = RegUtils.regItem("fried_eggplant_pasta",
             () -> new Item(new Item.Properties().stacksTo(16).food(ModFoods.FRIED_EGGPLANT_PASTA)));
 
-    public static final DeferredItem<Item> POACHED_EGGPLANTS = ITEMS.register("poached_eggplants",
+    public static final Supplier<Item> POACHED_EGGPLANTS = RegUtils.regItem("poached_eggplants",
             () -> new Item(new Item.Properties().stacksTo(16).food(ModFoods.POACHED_EGGPLANTS)));
 
-    public static final DeferredItem<Item> EGGPLANT_BURGER = ITEMS.register("eggplant_burger",
+    public static final Supplier<Item> EGGPLANT_BURGER = RegUtils.regItem("eggplant_burger",
             () -> new Item(new Item.Properties().food(ModFoods.EGGPLANT_BURGER)));
 
-    public static final DeferredItem<Item> AVOCADO_TOAST = ITEMS.register("avocado_toast",
+    public static final Supplier<Item> AVOCADO_TOAST = RegUtils.regItem("avocado_toast",
             () -> new Item(new Item.Properties().food(ModFoods.AVOCADO_TOAST)));
 
-    public static final DeferredItem<Item> CREAMED_CORN = ITEMS.register("creamed_corn",
+    public static final Supplier<Item> CREAMED_CORN = RegUtils.regItem("creamed_corn",
             () -> new Item(new Item.Properties().stacksTo(16).food(ModFoods.CREAMED_CORN)));
 
-    public static final DeferredItem<Item> CHICKEN_TACO = ITEMS.register("chicken_taco",
+    public static final Supplier<Item> CHICKEN_TACO = RegUtils.regItem("chicken_taco",
             () -> new Item(new Item.Properties().food(ModFoods.CHICKEN_TACO)));
 
-    public static final DeferredItem<Item> SPICY_CURRY = ITEMS.register("spicy_curry",
+    public static final Supplier<Item> SPICY_CURRY = RegUtils.regItem("spicy_curry",
             () -> new Item(new Item.Properties().stacksTo(16).food(ModFoods.SPICY_CURRY)));
 
-    public static final DeferredItem<Item> PORK_WRAP = ITEMS.register("pork_wrap",
+    public static final Supplier<Item> PORK_WRAP = RegUtils.regItem("pork_wrap",
             () -> new Item(new Item.Properties().food(ModFoods.PORK_WRAP)));
 
-    public static final DeferredItem<Item> FISH_TACO = ITEMS.register("fish_taco",
+    public static final Supplier<Item> FISH_TACO = RegUtils.regItem("fish_taco",
             () -> new Item(new Item.Properties().food(ModFoods.FISH_TACO)));
 
-    public static final DeferredItem<Item> MIDORI_ROLL = ITEMS.register("midori_roll",
+    public static final Supplier<Item> MIDORI_ROLL = RegUtils.regItem("midori_roll",
             () -> new Item(new Item.Properties().food(ModFoods.MIDORI_ROLL)));
 
-    public static final DeferredItem<Item> MIDORI_ROLL_SLICE = ITEMS.register("midori_roll_slice",
+    public static final Supplier<Item> MIDORI_ROLL_SLICE = RegUtils.regItem("midori_roll_slice",
             () -> new Item(new Item.Properties().food(ModFoods.MIDORI_ROLL_SLICE)));
 
-    public static final DeferredItem<Item> EGG_ROLL = ITEMS.register("egg_roll",
+    public static final Supplier<Item> EGG_ROLL = RegUtils.regItem("egg_roll",
             () -> new Item(new Item.Properties().food(ModFoods.EGG_ROLL)));
 
-    public static final DeferredItem<Item> CHICKEN_ROLL = ITEMS.register("chicken_roll",
+    public static final Supplier<Item> CHICKEN_ROLL = RegUtils.regItem("chicken_roll",
             () -> new Item(new Item.Properties().food(ModFoods.CHICKEN_ROLL)));
 
-    public static final DeferredItem<Item> CHICKEN_ROLL_SLICE = ITEMS.register("chicken_roll_slice",
+    public static final Supplier<Item> CHICKEN_ROLL_SLICE = RegUtils.regItem("chicken_roll_slice",
             () -> new Item(new Item.Properties().food(ModFoods.CHICKEN_ROLL_SLICE)));
 
-    public static final DeferredItem<Item> PUFFERFISH_ROLL = ITEMS.register("pufferfish_roll",
+    public static final Supplier<Item> PUFFERFISH_ROLL = RegUtils.regItem("pufferfish_roll",
             () -> new Item(new Item.Properties().food(ModFoods.PUFFERFISH_ROLL)));
 
-    public static final DeferredItem<Item> TROPICAL_ROLL = ITEMS.register("tropical_roll",
+    public static final Supplier<Item> TROPICAL_ROLL = RegUtils.regItem("tropical_roll",
             () -> new Item(new Item.Properties().food(ModFoods.TROPICAL_ROLL)));
 
-    public static final DeferredItem<Item> RICE_BALL = ITEMS.register("rice_ball",
+    public static final Supplier<Item> RICE_BALL = RegUtils.regItem("rice_ball",
             () -> new Item(new Item.Properties().food(ModFoods.RICE_BALL)));
 
-    public static final DeferredItem<Item> CALAMARI_ROLL = ITEMS.register("calamari_roll",
+    public static final Supplier<Item> CALAMARI_ROLL = RegUtils.regItem("calamari_roll",
             () -> new Item(new Item.Properties().food(ModFoods.CALAMARI_ROLL)));
     
-    public static void register(IEventBus eventBus) {
-        ITEMS.register(eventBus);
+    public static void register() {
+
     }
 }

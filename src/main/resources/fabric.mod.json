@@ -1,0 +1,34 @@
+{
+	"schemaVersion": 1,
+	"id": "culturaldelights",
+	"version": "${version}",
+	"name": "Cultural Delights",
+	"description": "A Farmer's Delight addon that adds food systems from around the world.",
+	"authors": [
+		"NCP Bails", "cassiancc", "Raspmary", "Bagels", "Nive"
+	],
+  	"credits": "Developer: NCP Bails | Fabric Port: cassiancc | Art: NCP Bails, Raspmary, Bagels, Nive",
+	"contact": {
+		"homepage": "https://grimbly.club/cultural-delights",
+		"sources": "https://github.com/cassiancc/Cultural-Delights-Refabricated"
+	},
+	"license": "All Rights Reserved",
+	"icon": "assets/culturaldelights/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+		  "com.ncpbails.culturaldelights.refabricated.CulturalDelightsFabric"
+		],
+		"client": [
+		  "com.ncpbails.culturaldelights.refabricated.client.CulturalDelightsFabricClient"
+		]
+	},
+	"depends": {
+		"fabricloader": ">=0.16.10",
+		"minecraft": "~1.21.1",
+		"java": ">=21",
+		"fabric-api": "*",
+		"farmersdelight": "*",
+		"lithostitched": "*"
+	}
+}
