@@ -10,7 +10,8 @@
   	"credits": "Developer: NCP Bails | Fabric Port: cassiancc | Art: NCP Bails, Raspmary, Bagels, Nive",
 	"contact": {
 		"homepage": "https://grimbly.club/cultural-delights",
-		"sources": "https://github.com/cassiancc/Cultural-Delights-Refabricated"
+		"sources": "https://github.com/cassiancc/Cultural-Delights-Refabricated",
+	  	"issues": "https://github.com/cassiancc/Cultural-Delights-Refabricated/issues"
 	},
 	"license": "All Rights Reserved",
 	"icon": "assets/culturaldelights/icon.png",
