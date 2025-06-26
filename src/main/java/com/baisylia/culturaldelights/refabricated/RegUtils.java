@@ -21,9 +21,9 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
-package com.ncpbails.culturaldelights.refabricated;
+package com.baisylia.culturaldelights.refabricated;
 
-import com.ncpbails.culturaldelights.CulturalDelights;
+import com.baisylia.culturaldelights.CulturalDelights;
 import net.minecraft.advancements.CriterionTrigger;
 import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponentType;

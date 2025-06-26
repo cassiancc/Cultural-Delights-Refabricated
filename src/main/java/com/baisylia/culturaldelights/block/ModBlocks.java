@@ -3,6 +3,7 @@ package com.baisylia.culturaldelights.block;
 import com.baisylia.culturaldelights.CulturalDelights;
 import com.baisylia.culturaldelights.block.custom.*;
 import com.baisylia.culturaldelights.item.ModItems;
+import com.baisylia.culturaldelights.refabricated.RegUtils;
 import com.baisylia.culturaldelights.world.tree.ModTreeGrowers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -94,7 +95,7 @@ public class ModBlocks {
     public static final Supplier<Block> EXOTIC_ROLL_MEDLEY = registerBlock("exotic_roll_medley",
             () -> new ExoticRollMedleyBlock(BlockBehaviour.Properties.ofFullCopy(vectorwing.farmersdelight.common.registry.ModBlocks.RICE_ROLL_MEDLEY_BLOCK.get()).noOcclusion()));
 
-    public static final DeferredBlock<Block> EGGPLANT_PARMESAN_BLOCK = registerBlock("eggplant_parmesan_block",
+    public static final Supplier<Block> EGGPLANT_PARMESAN_BLOCK = registerBlock("eggplant_parmesan_block",
             () -> new EggplantFeastBlock(BlockBehaviour.Properties.ofFullCopy(vectorwing.farmersdelight.common.registry.ModBlocks.ROAST_CHICKEN_BLOCK.get()), ModItems.EGGPLANT_PARMESAN, true));
 
 

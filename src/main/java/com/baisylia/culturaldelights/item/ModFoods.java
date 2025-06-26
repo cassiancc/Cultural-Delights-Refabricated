@@ -60,9 +60,9 @@ public class ModFoods {
     public static final FoodProperties PORK_WRAP = (new FoodProperties.Builder()).nutrition(10).saturationModifier(0.8F).build();
     public static final FoodProperties FISH_TACO = (new FoodProperties.Builder()).nutrition(10).saturationModifier(0.8F).build();
     public static final FoodProperties HEARTY_SALAD = (new FoodProperties.Builder()).nutrition(7).saturationModifier(0.7F)
-            .effect(() -> new MobEffectInstance(ModEffects.NOURISHMENT, FoodValues.LONG_DURATION, 0), 1.0F).usingConvertsTo(Items.BOWL).build();
+            .effect(new MobEffectInstance(ModEffects.NOURISHMENT, FoodValues.LONG_DURATION, 0), 1.0F).usingConvertsTo(Items.BOWL).build();
     public static final FoodProperties EGGPLANT_PARMESAN = (new FoodProperties.Builder()).nutrition(12).saturationModifier(0.9F)
-            .effect(() -> new MobEffectInstance(ModEffects.NOURISHMENT, FoodValues.LONG_DURATION, 0), 1.0F).usingConvertsTo(Items.BOWL).build();
+            .effect(new MobEffectInstance(ModEffects.NOURISHMENT, FoodValues.LONG_DURATION, 0), 1.0F).usingConvertsTo(Items.BOWL).build();
     public static final FoodProperties EGGPLANT_BURGER = (new FoodProperties.Builder()).nutrition(12).saturationModifier(0.7F).build();
     public static final FoodProperties SPICY_CURRY = (new FoodProperties.Builder()).nutrition(12).saturationModifier(1.3F)
             .effect( new MobEffectInstance(ModEffects.NOURISHMENT, FoodValues.LONG_DURATION, 0), 1.0F).usingConvertsTo(Items.BOWL).build();

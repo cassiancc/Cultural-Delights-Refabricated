@@ -1,10 +1,7 @@
-package com.ncpbails.culturaldelights.refabricated;
+package com.baisylia.culturaldelights.refabricated;
 
-import com.ncpbails.culturaldelights.CulturalDelights;
+import com.baisylia.culturaldelights.CulturalDelights;
 import net.fabricmc.api.ModInitializer;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class CulturalDelightsFabric implements ModInitializer {
 

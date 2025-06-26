@@ -76,7 +76,7 @@ public class EggplantFeastBlock extends Block {
             Item requiredContainer = Items.BOWL;
 
             if (servings > 0) {
-                if (!serving.hasCraftingRemainingItem() || ItemStack.isSameItem(heldStack, serving.getCraftingRemainingItem())) {
+                if (!serving.getItem().hasCraftingRemainingItem() || heldStack.is(serving.getItem().getCraftingRemainingItem())) {
                     if (heldStack.is(requiredContainer)) {
                         level.setBlock(pos, (BlockState) state.setValue(this.getServingsProperty(), servings - 1), 3);
                         if (!player.getInventory().add(serving)) {

@@ -1,10 +1,8 @@
-package com.ncpbails.culturaldelights.refabricated.client;
+package com.baisylia.culturaldelights.refabricated.client;
 
-import com.ncpbails.culturaldelights.block.ModBlocks;
+import com.baisylia.culturaldelights.block.ModBlocks;
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 
 public class CulturalDelightsFabricClient implements ClientModInitializer {

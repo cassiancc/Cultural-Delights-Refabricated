@@ -2,10 +2,11 @@ package com.baisylia.culturaldelights.item;
 
 
 import com.baisylia.culturaldelights.refabricated.RegUtils;
-import com.baisylia.culturaldelights.CulturalDelights;
 import com.baisylia.culturaldelights.block.ModBlocks;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
+
+import java.util.function.Supplier;
 
 public class ModItems {
 
@@ -111,7 +112,7 @@ public class ModItems {
     public static final Supplier<Item> MUTTON_SANDWICH = RegUtils.regItem("mutton_sandwich",
             () -> new Item(new Item.Properties().food(ModFoods.MUTTON_SANDWICH)));
 
-    public static final DeferredItem<Item> EGGPLANT_PARMESAN = ITEMS.register("eggplant_parmesan",
+    public static final Supplier<Item> EGGPLANT_PARMESAN = RegUtils.regItem("eggplant_parmesan",
             () -> new Item(new Item.Properties().stacksTo(16).food(ModFoods.EGGPLANT_PARMESAN)));
 
     public static final Supplier<Item> POACHED_EGGPLANTS = RegUtils.regItem("poached_eggplants",

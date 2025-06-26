@@ -18,10 +18,10 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-		  "com.ncpbails.culturaldelights.refabricated.CulturalDelightsFabric"
+		  "com.baisylia.culturaldelights.refabricated.CulturalDelightsFabric"
 		],
 		"client": [
-		  "com.ncpbails.culturaldelights.refabricated.client.CulturalDelightsFabricClient"
+		  "com.baisylia.culturaldelights.refabricated.client.CulturalDelightsFabricClient"
 		]
 	},
 	"depends": {
