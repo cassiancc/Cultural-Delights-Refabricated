@@ -5,8 +5,9 @@ import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -19,7 +20,6 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.level.pathfinder.PathComputationType;
@@ -31,7 +31,7 @@ import vectorwing.farmersdelight.common.utility.TextUtils;
 import java.util.function.Supplier;
 
 public class EggplantFeastBlock extends Block {
-    public static final DirectionProperty FACING;
+    public static final Property<Direction> FACING;
     public static final IntegerProperty SERVINGS;
     public final Supplier<Item> servingItem;
     public final boolean hasLeftovers;
@@ -60,23 +60,23 @@ public class EggplantFeastBlock extends Block {
         return SHAPES[(Integer)state.getValue(SERVINGS)];
     }
 
-    public ItemInteractionResult useItemOn(ItemStack heldStack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        return level.isClientSide && this.takeServing(level, pos, state, player, hand).consumesAction() ? ItemInteractionResult.SUCCESS : this.takeServing(level, pos, state, player, hand);
+    public InteractionResult useItemOn(ItemStack heldStack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+        return level.isClientSide && this.takeServing(level, pos, state, player, hand).consumesAction() ? InteractionResult.SUCCESS : this.takeServing(level, pos, state, player, hand);
     }
 
-    protected ItemInteractionResult takeServing(LevelAccessor level, BlockPos pos, BlockState state, Player player, InteractionHand hand) {
+    protected InteractionResult takeServing(LevelAccessor level, BlockPos pos, BlockState state, Player player, InteractionHand hand) {
         int servings = (Integer)state.getValue(this.getServingsProperty());
         if (servings == 0) {
             level.playSound((Player)null, pos, SoundEvents.WOOD_BREAK, SoundSource.PLAYERS, 0.8F, 0.8F);
             level.destroyBlock(pos, true);
-            return ItemInteractionResult.SUCCESS;
+            return InteractionResult.SUCCESS;
         } else {
             ItemStack serving = this.getServingItem(state);
             ItemStack heldStack = player.getItemInHand(hand);
             Item requiredContainer = Items.BOWL;
 
             if (servings > 0) {
-                if (!serving.getItem().hasCraftingRemainingItem() || heldStack.is(serving.getItem().getCraftingRemainingItem())) {
+                if (serving.getItem().getCraftingRemainder().is(heldStack.getItem()) || serving.getItem().getCraftingRemainder().equals(ItemStack.EMPTY)) {
                     if (heldStack.is(requiredContainer)) {
                         level.setBlock(pos, (BlockState) state.setValue(this.getServingsProperty(), servings - 1), 3);
                         if (!player.getInventory().add(serving)) {
@@ -89,17 +89,17 @@ public class EggplantFeastBlock extends Block {
                         }
 
                         level.playSound((Player) null, pos, (SoundEvent) SoundEvents.ARMOR_EQUIP_GENERIC.value(), SoundSource.BLOCKS, 1.0F, 1.0F);
-                        return ItemInteractionResult.SUCCESS;
+                        return InteractionResult.SUCCESS;
                     }
                     else {
-                        player.displayClientMessage(TextUtils.getTranslation("block.feast.use_container", new Object[]{requiredContainer.getDescription()}), true);
+                        player.displayClientMessage(TextUtils.getTranslation("block.feast.use_container", new Object[]{requiredContainer.getDescriptionId()}), true);
                     }
                 }
 
-                player.displayClientMessage(TextUtils.getTranslation("block.feast.use_container", new Object[]{requiredContainer.getDescription()}), true);
+                player.displayClientMessage(TextUtils.getTranslation("block.feast.use_container", new Object[]{requiredContainer.getDescriptionId()}), true);
             }
 
-            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+            return InteractionResult.PASS;
         }
     }
 
@@ -107,8 +107,8 @@ public class EggplantFeastBlock extends Block {
         return (BlockState)this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
 
-    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos) {
-        return facing == Direction.DOWN && !stateIn.canSurvive(level, currentPos) ? Blocks.AIR.defaultBlockState() : super.updateShape(stateIn, facing, facingState, level, currentPos, facingPos);
+    public BlockState updateShape(BlockState stateIn, LevelReader level, ScheduledTickAccess scheduledTickAccess, BlockPos currentPos, Direction facing, BlockPos facingPos, BlockState facingState, RandomSource randomSource) {
+        return facing == Direction.DOWN && !stateIn.canSurvive(level, currentPos) ? Blocks.AIR.defaultBlockState() : super.updateShape(stateIn, level, scheduledTickAccess, currentPos, facing, facingPos, facingState, randomSource);
     }
 
     public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {

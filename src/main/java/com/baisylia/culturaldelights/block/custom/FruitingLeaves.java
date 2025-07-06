@@ -3,23 +3,24 @@ package com.baisylia.culturaldelights.block.custom;
 
 
 import com.baisylia.culturaldelights.item.ModItems;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ColorParticleOption;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.ParticleUtils;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.BonemealableBlock;
-import net.minecraft.world.level.block.LeavesBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -27,12 +28,14 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 
-public class FruitingLeaves extends LeavesBlock implements BonemealableBlock {
+public class FruitingLeaves extends TintedParticleLeavesBlock implements BonemealableBlock {
     public static final int MAX_AGE = 4;
     public static final IntegerProperty AGE = BlockStateProperties.AGE_4;
+    public static final MapCodec<FruitingLeaves> CODEC = simpleCodec(FruitingLeaves::new);
+
 
     public FruitingLeaves(Properties properties) {
-        super(properties);
+        super(0.01F, properties);
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(AGE, 0)
                 .setValue(DISTANCE, 7)
@@ -44,6 +47,11 @@ public class FruitingLeaves extends LeavesBlock implements BonemealableBlock {
     //public ItemStack getCloneItemStack(BlockGetter p_57256_, BlockPos p_57257_, BlockState p_57258_) {
     //    return new ItemStack(ModItems.AVOCADO.get());
     //}
+
+    @Override
+    public MapCodec<? extends TintedParticleLeavesBlock> codec() {
+        return CODEC;
+    }
 
     public boolean isRandomlyTicking(BlockState state) {
         return state.getValue(AGE) < MAX_AGE || state.getValue(DISTANCE) == 7 && !state.getValue(PERSISTENT);
@@ -64,11 +72,17 @@ public class FruitingLeaves extends LeavesBlock implements BonemealableBlock {
         }
     }
 
-    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+    @Override
+    protected void spawnFallingLeavesParticle(Level level, BlockPos blockPos, RandomSource randomSource) {
+        ColorParticleOption colorParticleOption = ColorParticleOption.create(ParticleTypes.TINTED_LEAVES, level.getClientLeafTintColor(blockPos));
+        ParticleUtils.spawnParticleBelow(level, blockPos, randomSource, colorParticleOption);
+    }
+
+    protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
         int i = state.getValue(AGE);
         boolean flag = i == MAX_AGE;
         if (!flag && player.getItemInHand(hand).is(Items.BONE_MEAL)) {
-            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+            return InteractionResult.PASS;
         } else {
             return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
         }
@@ -84,7 +98,7 @@ public class FruitingLeaves extends LeavesBlock implements BonemealableBlock {
             BlockState blockstate = (BlockState)state.setValue(AGE, 1);
             level.setBlock(pos, blockstate, 2);
             level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(player, blockstate));
-            return InteractionResult.sidedSuccess(level.isClientSide);
+            return InteractionResult.SUCCESS;
         } else {
             return super.useWithoutItem(state, level, pos, player, hitResult);
         }

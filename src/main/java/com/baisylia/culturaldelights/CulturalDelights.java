@@ -18,7 +18,7 @@ public class CulturalDelights
     public static void init()
     {
         ModCreativeModeTabs.register();
-        ModItems.register();
         ModBlocks.register();
+        ModItems.register();
     }
 }

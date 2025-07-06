@@ -10,6 +10,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.BushBlock;
@@ -23,14 +24,9 @@ import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.LevelReader;
 
 public class CornBlock extends BushBlock implements BonemealableBlock {
-    public static final MapCodec<CornBlock> CODEC = simpleCodec(CornBlock::new);
+    public static final MapCodec<BushBlock> CODEC = simpleCodec(CornBlock::new);
     public static final IntegerProperty AGE;
     public static final BooleanProperty SUPPORTING;
     private static final VoxelShape[] SHAPE_BY_AGE;
@@ -40,7 +36,7 @@ public class CornBlock extends BushBlock implements BonemealableBlock {
         this.registerDefaultState((BlockState)((BlockState)this.defaultBlockState().setValue(AGE, 0)).setValue(SUPPORTING, false));
     }
 
-    protected MapCodec<? extends BushBlock> codec() {
+    public MapCodec<BushBlock> codec() {
         return CODEC;
     }
 
@@ -83,7 +79,7 @@ public class CornBlock extends BushBlock implements BonemealableBlock {
         return 3;
     }
 
-    public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
+    public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state, boolean bl) {
         return new ItemStack((ItemLike) ModItems.CORN_KERNELS.get());
     }
 
@@ -95,10 +91,10 @@ public class CornBlock extends BushBlock implements BonemealableBlock {
         builder.add(new Property[]{AGE, SUPPORTING});
     }
 
-    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos) {
-        BlockState state = super.updateShape(stateIn, facing, facingState, level, currentPos, facingPos);
+    public BlockState updateShape(BlockState stateIn, LevelReader level, ScheduledTickAccess scheduledTickAccess, BlockPos currentPos, Direction facing, BlockPos facingPos, BlockState facingState, RandomSource randomSource) {
+        BlockState state = super.updateShape(stateIn, level, scheduledTickAccess, currentPos, facing, facingPos, facingState, randomSource);
         if (!state.isAir()) {
-            level.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
+            scheduledTickAccess.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
             if (facing == Direction.UP) {
                 return (BlockState)state.setValue(SUPPORTING, this.isSupportingCornUpper(facingState));
             }

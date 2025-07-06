@@ -29,13 +29,18 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.component.Consumable;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.Block;
@@ -126,6 +131,36 @@ public class RegUtils {
 
     public static <B extends Item> Supplier<B> regItem(String name, Supplier<B> supplier) {
         return register(name, supplier, BuiltInRegistries.ITEM);
+    }
+
+    public static Supplier<Item> regItem(String name, Item.Properties properties) {
+        return regItem(name, ()-> new Item(properties.setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(CulturalDelights.MOD_ID, name)))));
+    }
+
+    public static Supplier<Item> regItem(String name, Block block) {
+        return regItem(name, ()-> new BlockItem(block, new Item.Properties().useBlockDescriptionPrefix().setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(CulturalDelights.MOD_ID, name)))));
+    }
+
+    public static Supplier<Item> regItem(String name, Block block, boolean b) {
+        if (!b)
+            return regItem(name, ()-> new BlockItem(block, new Item.Properties().setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(CulturalDelights.MOD_ID, name)))));
+        return regItem(name, block);
+    }
+
+    public static Supplier<Item> regItem(String name, FoodProperties foodProperties) {
+        return regItem(name, new Item.Properties().food(foodProperties));
+    }
+
+    public static Supplier<Item> regItem(String name, FoodProperties foodProperties, Consumable consumable) {
+        return regItem(name, new Item.Properties().food(foodProperties, consumable));
+    }
+
+    public static Supplier<Item> regItem(String name, FoodProperties foodProperties, Item item) {
+        return regItem(name, new Item.Properties().food(foodProperties).usingConvertsTo(item).stacksTo(16));
+    }
+
+    public static Supplier<Item> regItem(String name, FoodProperties foodProperties, Consumable consumable, Item item) {
+        return regItem(name, new Item.Properties().food(foodProperties, consumable).stacksTo(16).usingConvertsTo(item));
     }
 
     public static <B extends Block> Supplier<B> regBlock(String name, Supplier<B> supplier) {
