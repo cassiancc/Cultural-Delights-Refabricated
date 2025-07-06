@@ -7,15 +7,9 @@
   "cookingtime": 400,
   "experience": 2.0,
   "ingredients": [
-    {
-      "tag": "c:foods/milk"
-    },
-    {
-      "item": "culturaldelights:corn_cob"
-    },
-    {
-      "item": "culturaldelights:corn_cob"
-    }
+    "#c:foods/milk",
+    "culturaldelights:corn_cob",
+    "culturaldelights:corn_cob"
   ],
   "recipe_book_tab": "meals",
   "result": {

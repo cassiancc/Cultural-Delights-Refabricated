@@ -1,12 +1,10 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    {
-      "item": "culturaldelights:cucumber_crate"
-    }
-  ],
-  "result": {
-    "count": 9,
-    "id": "culturaldelights:cucumber"
-  }
+ "type": "minecraft:crafting_shapeless",
+ "ingredients": [
+  "culturaldelights:cucumber_crate"
+ ],
+ "result": {
+  "count": 9,
+  "id": "culturaldelights:cucumber"
+ }
 }

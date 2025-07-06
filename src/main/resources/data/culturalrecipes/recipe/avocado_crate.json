@@ -6,9 +6,7 @@
     "###"
   ],
   "key": {
-    "#": {
-      "item": "culturaldelights:avocado"
-    }
+    "#": "culturaldelights:avocado"
   },
   "result": {
     "count": 1,

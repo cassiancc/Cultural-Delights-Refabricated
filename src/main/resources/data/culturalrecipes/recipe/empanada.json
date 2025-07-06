@@ -1,24 +1,14 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    {
-      "item": "culturaldelights:corn_dough"
-    },
-    {
-      "item": "culturaldelights:corn_dough"
-    },
-    {
-      "tag": "culturaldelights:avocados"
-    },
-    {
-      "tag": "c:crops/tomato"
-    },
-    {
-      "tag": "c:crops/onion"
-    }
-  ],
-  "result": {
-    "count": 2,
-    "id": "culturaldelights:empanada"
-  }
+ "type": "minecraft:crafting_shapeless",
+ "ingredients": [
+  "culturaldelights:corn_dough",
+  "culturaldelights:corn_dough",
+  "#culturaldelights:avocados",
+  "#c:crops/tomato",
+  "#c:crops/onion"
+ ],
+ "result": {
+  "count": 2,
+  "id": "culturaldelights:empanada"
+ }
 }

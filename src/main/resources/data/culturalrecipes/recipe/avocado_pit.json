@@ -1,9 +1,7 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    {
-      "item": "culturaldelights:avocado"
-    }
+    "culturaldelights:avocado"
   ],
   "result": {
     "count": 1,

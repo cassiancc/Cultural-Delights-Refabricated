@@ -4,9 +4,7 @@
     "#"
   ],
   "key": {
-    "#": {
-      "item": "culturaldelights:tortilla"
-    }
+    "#": "culturaldelights:tortilla"
   },
   "result": {
     "count": 2,

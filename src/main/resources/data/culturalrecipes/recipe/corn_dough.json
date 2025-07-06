@@ -1,21 +1,13 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    {
-      "item": "minecraft:water_bucket"
-    },
-    {
-      "item": "culturaldelights:corn_cob"
-    },
-    {
-      "item": "culturaldelights:corn_cob"
-    },
-    {
-      "item": "culturaldelights:corn_cob"
-    }
-  ],
-  "result": {
-    "count": 3,
-    "id": "culturaldelights:corn_dough"
-  }
+ "type": "minecraft:crafting_shapeless",
+ "ingredients": [
+  "minecraft:water_bucket",
+  "culturaldelights:corn_cob",
+  "culturaldelights:corn_cob",
+  "culturaldelights:corn_cob"
+ ],
+ "result": {
+  "count": 3,
+  "id": "culturaldelights:corn_dough"
+ }
 }

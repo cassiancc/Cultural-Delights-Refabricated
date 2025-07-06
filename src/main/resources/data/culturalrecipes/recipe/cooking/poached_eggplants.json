@@ -7,18 +7,10 @@
   "cookingtime": 400,
   "experience": 2.0,
   "ingredients": [
-    {
-      "tag": "culturaldelights:regular_eggplants"
-    },
-    {
-      "tag": "c:crops/onion"
-    },
-    {
-      "item": "farmersdelight:tomato_sauce"
-    },
-    {
-      "tag": "c:eggs"
-    }
+    "#culturaldelights:regular_eggplants",
+    "#c:crops/onion",
+    "farmersdelight:tomato_sauce",
+    "#c:eggs"
   ],
   "recipe_book_tab": "meals",
   "result": {

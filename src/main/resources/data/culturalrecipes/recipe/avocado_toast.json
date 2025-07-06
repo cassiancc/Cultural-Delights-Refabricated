@@ -1,15 +1,9 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    {
-      "tag": "culturaldelights:avocados"
-    },
-    {
-      "tag": "culturaldelights:avocados"
-    },
-    {
-      "item": "minecraft:bread"
-    }
+   "#culturaldelights:avocados",
+    "#culturaldelights:avocados",
+    "minecraft:bread"
   ],
   "result": {
     "count": 4,
