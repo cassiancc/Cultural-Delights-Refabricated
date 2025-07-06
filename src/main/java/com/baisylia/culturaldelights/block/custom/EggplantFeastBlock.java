@@ -1,5 +1,6 @@
 package com.baisylia.culturaldelights.block.custom;
 
+import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvent;
@@ -92,11 +93,11 @@ public class EggplantFeastBlock extends Block {
                         return InteractionResult.SUCCESS;
                     }
                     else {
-                        player.displayClientMessage(TextUtils.getTranslation("block.feast.use_container", new Object[]{requiredContainer.getDescriptionId()}), true);
+                        player.displayClientMessage(TextUtils.getTranslation("block.feast.use_container", new Object[]{I18n.get(requiredContainer.getDescriptionId())}), true);
                     }
                 }
 
-                player.displayClientMessage(TextUtils.getTranslation("block.feast.use_container", new Object[]{requiredContainer.getDescriptionId()}), true);
+                player.displayClientMessage(TextUtils.getTranslation("block.feast.use_container", new Object[]{I18n.get(requiredContainer.getDescriptionId())}), true);
             }
 
             return InteractionResult.PASS;
