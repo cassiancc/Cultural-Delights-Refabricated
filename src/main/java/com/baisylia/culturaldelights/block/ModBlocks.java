@@ -67,7 +67,7 @@ public class ModBlocks {
             () -> new CornUpperBlock(wheatProperties().setId(resourceKey("corn_upper")).noOcclusion()));
 
     private static BlockBehaviour.Properties wheatProperties() {
-        return BlockBehaviour.Properties.of().noCollission().randomTicks().instabreak().sound(SoundType.CROP).mapColor(MapColor.PLANT);
+        return BlockBehaviour.Properties.of().noCollision().randomTicks().instabreak().sound(SoundType.CROP).mapColor(MapColor.PLANT);
     }
 
 
