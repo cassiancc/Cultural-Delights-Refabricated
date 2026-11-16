@@ -201,7 +201,7 @@ public class CornBlock extends CropBlock {
         }
 
         if (directionToNeighbour == Direction.UP && height < maxHeight) {
-            if (!state.is(this) || state.getValue(HEIGHT) != height + 1) {
+            if (!neighbourState.is(this) || neighbourState.getValue(HEIGHT) != height + 1) {
                 return Blocks.AIR.defaultBlockState();
             }
         }
