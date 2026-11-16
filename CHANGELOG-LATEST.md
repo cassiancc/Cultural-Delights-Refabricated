@@ -1,3 +1,3 @@
 ### Fixed
 
-- Wild Corn blocks now have the correct render type.
+- Crash when running the mod in production.

@@ -159,7 +159,7 @@ loom {
 
 
 publishMods {
-    file = tasks.named("jar").flatMap { it.archiveFile }
+    file = remapJar.archiveFile
     changelog = rootProject.file("CHANGELOG-LATEST.md").text
     type = STABLE
     version = "${project.version}-${minecraft_version}"
